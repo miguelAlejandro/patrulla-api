@@ -9,10 +9,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var patrullas_routes = require('./routes/patrullas'); 
-var sensores_routes = require('./routes/sensores');
-app.use('/api/patrullas', patrullas_routes);
-app.use('/api/sensores', sensores_routes);
+// var users_routes = require('./routes/users'); 
+// var patrullas_routes = require('./routes/patrullas'); 
+// var sensores_routes = require('./routes/sensores');
+// app.use('/api/users', users_routes);
+// app.use('/api/patrullas', patrullas_routes);
+// app.use('/api/sensores', sensores_routes);
 
 
 
