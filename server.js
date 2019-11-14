@@ -1,24 +1,25 @@
 'use strict'
-var mongoose = require('mongoose');
+const config = require('./config');
+
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
-// var users_routes = require('./routes/users'); 
-// var patrullas_routes = require('./routes/patrullas'); 
-// var sensores_routes = require('./routes/sensores');
-// app.use('/api/users', users_routes);
-// app.use('/api/patrullas', patrullas_routes);
-// app.use('/api/sensores', sensores_routes);
+var routes = require('./routes');
 
 
+app.use('/api', routes);
 
-mongoose.connect('mongodb://localhost:27017/patrulla', {
+
+mongoose.connect(config.db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -27,10 +28,10 @@ mongoose.connect('mongodb://localhost:27017/patrulla', {
         console.log("La conexión a la base de datos curso_mean_social se ha realizado correctamente")
 
         // CREAR EL SERVIDOR WEB CON NODEJS
-        app.listen(4000, function () {
+        app.listen(config.port, function () {
             console.log('Example app listening on port 3000!');
             app.get('/', function (req, res) {
-                res.send('API Patrulla');
+                res.send({ message: 'API patrulla' });
             });
         })
     })

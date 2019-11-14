@@ -4,13 +4,10 @@ var mongoose =  require('mongoose');
 // Usaremos los esquemas
 var Schema = mongoose.Schema;
 // Creamos el objeto del esquema y sus atributos
-var UserSchema = Schema({
+var SensoresSchema = Schema({
     name: String,
     email: String,
-    password: String,
-    role: String, 
-    image: String
-    
+    docs: String
 });
 // Exportamos el modelo para usarlo en otros ficheros
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Sensores', SensoresSchema);
