@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 var PatrullaSchema = Schema({
     name: String,
     email: String,
-    docs: String
+    docs: [{}]
 });
 // Exportamos el modelo para usarlo en otros ficheros
 module.exports = mongoose.model('Patrulla', PatrullaSchema);

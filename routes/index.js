@@ -6,6 +6,54 @@ const sensoresControllers = require('../controllers/sensores');
 
 const auth = require('../middlewares/auth');
 
+//API
+router.get('/', (req, res) => {
+    docs = {
+        'user':{
+            'get': ['/api/get_user'],
+            'post': ['/api/sign_up', '/api/sign_in']
+        },
+        'patrullas':{
+            'get': ['/api/read_patrullas'],
+            'post': ['/api/create_patrullas', '/api/update_patrullas', '/delete_patrullas']
+        },
+        'sensores':{
+            'get': ['/api/read_sensores'],
+            'post': ['/api/create_sensores', '/api/update_sensores', '/delete_sensores']
+        }
+        
+    }
+    res.send(200, { docs })
+});
+
+router.post('/', (req, res) => {
+    
+    const entrada = {
+        name: req.body.docs.name,
+        email: req.body.docs.email,
+        password: req.body.docs.password,
+        role: req.body.docs.role,
+        image: req.body.docs.image,
+    }
+    console.log(entrada);
+    var docs = {
+        'user':{
+            'get': ['/api/get_user'],
+            'post': ['/api/sign_up', '/api/sign_in']
+        },
+        'patrullas':{
+            'get': ['/api/read_patrullas'],
+            'post': ['/api/create_patrullas', '/api/update_patrullas', '/delete_patrullas']
+        },
+        'sensores':{
+            'get': ['/api/read_sensores'],
+            'post': ['/api/create_sensores', '/api/update_sensores', '/delete_sensores']
+        }
+        
+    }
+    res.send(200, { docs })
+});
+
 //Users
 router.get('/get_user', userControllers.getUser);
 

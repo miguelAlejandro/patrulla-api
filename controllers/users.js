@@ -5,11 +5,11 @@ const service = require('../services');
 
 function signUp(req, res){
     const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        role: req.body.role,
-        image: req.body.image,
+        name: req.body.docs.name,
+        email: req.body.docs.email,
+        password: req.body.docs.password,
+        role: req.body.docs.role,
+        image: req.body.docs.image,
     });
     user.save((err) => {
         if(err){
@@ -22,15 +22,24 @@ function signUp(req, res){
 }
 
 function signIn (req, res) {
-    User.find({ email: req.body.email }, (err, user) => {
+    User.find({ email: req.body.docs.email }, (err, user) => {
       if (err) return res.status(500).send({ message: err })
       if (!user) return res.status(404).send({ message: 'No existe el usuario' })
   
       req.user = user
-      res.status(200).send({
-        message: 'Te has logueado correctamente',
-        token: service.createToken(user)
-      })
+      console.log(user[0].email)
+      if(user[0].password != req.body.docs.password){
+        res.status(200).send({
+            message: 'usuario y password error',
+          })
+      }
+      else{
+        res.status(200).send({
+            message: 'Te has logueado correctamente',
+            token: service.createToken(user)
+          })
+      }
+      
     })
   }
 
