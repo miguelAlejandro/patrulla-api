@@ -64,14 +64,14 @@ router.post('/sign_in', userControllers.signIn);
 
 // //CRUD Patrullas
 router.post('/create_patrullas', auth, patrullaControllers.create);
-router.get('/read_patrullas', auth, patrullaControllers.read);
+router.get('/read_patrullas', patrullaControllers.read);
 router.post('/update_patrullas', auth, patrullaControllers.update);
 router.post('/delete_patrullas', auth, patrullaControllers.delet);
 
 
 // //CRUD Sensores
 router.post('/create_sensores', auth, sensoresControllers.create);
-router.get('/read_sensores', auth, sensoresControllers.read);
+router.get('/read_sensores', sensoresControllers.read);
 router.post('/update_sensores', auth, sensoresControllers.update);
 router.post('/delete_sensores', auth, sensoresControllers.delet);
 
