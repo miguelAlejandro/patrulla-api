@@ -8,8 +8,13 @@ var UserSchema = Schema({
     name: String,
     email: String,
     password: String,
+    descripcion: String,
     role: String, 
-    image: String
+    image: Buffer,
+    activar: String,
+    alertaId: [String],
+    sensoresId: [String],
+    patrullaId: [String]
     
 });
 // Exportamos el modelo para usarlo en otros ficheros

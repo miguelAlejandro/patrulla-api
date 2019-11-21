@@ -5,9 +5,10 @@ var mongoose =  require('mongoose');
 var Schema = mongoose.Schema;
 // Creamos el objeto del esquema y sus atributos
 var PatrullaSchema = Schema({
-    name: String,
-    email: String,
-    docs: [{}]
+    userId: String,
+    ubicacion: String,
+    sensoresId: [String],
+
 });
 // Exportamos el modelo para usarlo en otros ficheros
 module.exports = mongoose.model('Patrulla', PatrullaSchema);

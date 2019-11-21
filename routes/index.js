@@ -3,6 +3,7 @@ let router = require('express').Router();
 const userControllers = require('../controllers/users');
 const patrullaControllers = require('../controllers/patrullas');
 const sensoresControllers = require('../controllers/sensores');
+const alertasControllers = require('../controllers/alertas');
 
 const auth = require('../middlewares/auth');
 
@@ -20,6 +21,10 @@ router.get('/', (req, res) => {
         'sensores':{
             'get': ['/api/read_sensores'],
             'post': ['/api/create_sensores', '/api/update_sensores', '/delete_sensores']
+        },
+        'alertas':{
+            'get': ['/api/read_alertas'],
+            'post': ['/api/create_alertas', '/api/update_alertas', '/delete_alertas']
         }
         
     }
@@ -48,6 +53,10 @@ router.post('/', (req, res) => {
         'sensores':{
             'get': ['/api/read_sensores'],
             'post': ['/api/create_sensores', '/api/update_sensores', '/delete_sensores']
+        },
+        'alertas':{
+            'get': ['/api/read_alertas'],
+            'post': ['/api/create_alertas', '/api/update_alertas', '/delete_alertas']
         }
         
     }
@@ -74,5 +83,12 @@ router.post('/create_sensores', auth, sensoresControllers.create);
 router.get('/read_sensores', sensoresControllers.read);
 router.post('/update_sensores', auth, sensoresControllers.update);
 router.post('/delete_sensores', auth, sensoresControllers.delet);
+
+
+// //CRUD Alertas
+router.post('/create_alertas', auth, alertasControllers.create);
+router.get('/read_alertas', alertasControllers.read);
+router.post('/update_alertas', auth, alertasControllers.update);
+router.post('/delete_alertas', auth, alertasControllers.delet);
 
 module.exports = router;

@@ -7,7 +7,13 @@ function create(req, res){
 }
 
 function read(req, res){
-    res.status(200).send({message: 'read_patrulla'});
+    Patrullas.find({}, (err, patrullas) => {
+        if (err) return res.status(500).send({ message: err })
+        if (patrullas.length == 0) return res.status(404).send({ message: 'No hay patrullas' })
+        
+        res.status(200).send({patrullas: patrullas,})
+
+      })
 }
 
 function update(req, res){

@@ -3,52 +3,68 @@
 const User = require('../models/users');
 const service = require('../services');
 
-function signUp(req, res){
+function signUp(req, res) {
     const user = new User({
         name: req.body.docs.name,
         email: req.body.docs.email,
         password: req.body.docs.password,
         role: req.body.docs.role,
         image: req.body.docs.image,
+        activar: null
     });
-    user.save((err) => {
-        if(err){
-            res.status(500).send({message: 'Error al crear el usuario: ${err}'});
+    User.find({ email: req.body.docs.email }, (err, login) => {
+        if (login.length > 0) {
+            res.status(500).send({ message: 'Error ese usuario esta registrado' });
         }
-        else{
-            return res.status(200).send({token: service.createToken(user)});
+        else {
+            user.save((err) => {
+                if (err) {
+                    res.status(500).send({ message: 'Error al crear el usuario: ${err}' });
+                }
+                else {
+                    return res.status(200).send({ token: service.createToken(user)});
+                }
+            });
         }
-    });
+    })
+
 }
 
-function signIn (req, res) {
+function signIn(req, res) {
     User.find({ email: req.body.docs.email }, (err, user) => {
-      if (err) return res.status(500).send({ message: err })
-      if (!user) return res.status(404).send({ message: 'No existe el usuario' })
-  
-      req.user = user
-      console.log(user[0].email)
-      if(user[0].password != req.body.docs.password){
-        res.status(200).send({
-            message: 'usuario y password error',
-          })
-      }
-      else{
-        res.status(200).send({
-            message: 'Te has logueado correctamente',
-            token: service.createToken(user)
-          })
-      }
-      
-    })
-  }
+        if (err) return res.status(500).send({ message: err })
+        if (!user) return res.status(404).send({ message: 'No existe el usuario' })
 
-function getUser(req, res){
+        req.user = user
+        console.log(user[0].email)
+        if (user[0].password != req.body.docs.password) {
+            res.status(200).send({
+                message: 'usuario y password error',
+            })
+        }
+        else {
+            res.status(200).send({
+                message: 'Te has logueado correctamente',
+                token: service.createToken(user),
+                name: user[0].name,
+                role: user[0].role,
+                image: user[0].image,
+                alertaId: user[0].alertaId,
+                sensoresId: user[0].sensoresId,
+                patrullaId: user[0].patrullaId
+
+            })
+        }
+
+    })
+}
+
+function getUser(req, res) {
     User.find({}, (err, docs) => {
-        if(err) return res.status(500).send({message: 'Error al buscar el usuario: ${err}'});
+        if (err) return res.status(500).send({ message: 'Error al buscar el usuario: ${err}' });
         // if (!req.params.id) return res.status(404).send({message: `El id no existe`})
         res.send(200, { docs })
-        
+
     });
 }
 
