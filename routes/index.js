@@ -72,23 +72,23 @@ router.post('/sign_in', userControllers.signIn);
 
 
 // //CRUD Patrullas
-router.post('/create_patrullas', auth, patrullaControllers.create);
+router.post('/create_patrullas', patrullaControllers.create);
 router.get('/read_patrullas', patrullaControllers.read);
-router.post('/update_patrullas', auth, patrullaControllers.update);
-router.post('/delete_patrullas', auth, patrullaControllers.delet);
+// router.post('/update_patrullas', patrullaControllers.update);
+router.post('/delete_patrullas', patrullaControllers.delet);
 
 
 // //CRUD Sensores
-router.post('/create_sensores', auth, sensoresControllers.create);
+router.post('/create_sensores', sensoresControllers.create);
 router.get('/read_sensores', sensoresControllers.read);
-router.post('/update_sensores', auth, sensoresControllers.update);
-router.post('/delete_sensores', auth, sensoresControllers.delet);
+// router.post('/update_sensores', sensoresControllers.update);
+router.post('/delete_sensores', sensoresControllers.delet);
 
 
 // //CRUD Alertas
-router.post('/create_alertas', auth, alertasControllers.create);
+router.post('/create_alertas', alertasControllers.create);
 router.get('/read_alertas', alertasControllers.read);
-router.post('/update_alertas', auth, alertasControllers.update);
-router.post('/delete_alertas', auth, alertasControllers.delet);
+// router.post('/update_alertas', auth, alertasControllers.update);
+router.post('/delete_alertas',  alertasControllers.delet);
 
 module.exports = router;
