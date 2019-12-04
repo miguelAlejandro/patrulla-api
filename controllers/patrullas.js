@@ -4,9 +4,9 @@ const Patrullas = require('../models/patrullas');
 
 function create(req, res) {
     const patrulla = new Patrullas({
-        email: req.body.docs.email,
-        nombre: req.body.docs.nombre,
-        patrullaId: req.body.docs.patrullaId
+        email: req.body.email,
+        nombre: req.body.nombre,
+        serial: req.body.serial
        
     });
     patrulla.save((err) => {
