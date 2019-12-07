@@ -21,11 +21,11 @@ function create(req, res) {
 }
 
 function read(req, res) {
-    Patrullas.find({}, (err, patrulla) => {
+    Patrullas.find({}, (err, patrullas) => {
         if (err) return res.status(500).send({ message: err })
-        if (patrulla.length == 0) return res.status(404).send({ message: 'No hay patrullas' })
+        if (patrullas.length == 0) return res.status(404).send({ message: 'No hay patrullas' })
 
-        res.status(200).send({ patrulla: patrulla, })
+        res.status(200).send({patrullas})
 
     })
 }

@@ -29,7 +29,7 @@ function read(req, res) {
         if (err) return res.status(500).send({ message: err })
         if (alertas.length == 0) return res.status(404).send({ message: 'No hay alertas' })
 
-        res.status(200).send({ alertas: alertas, })
+        res.status(200).send({alertas})
 
     })
 }

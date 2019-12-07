@@ -30,7 +30,7 @@ function read(req, res) {
         if (err) return res.status(500).send({ message: err })
         if (sensores.length == 0) return res.status(404).send({ message: 'No hay sensores' })
 
-        res.status(200).send({ sensores: sensores, })
+        res.status(200).send({sensores})
 
     })
 }
