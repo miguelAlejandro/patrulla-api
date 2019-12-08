@@ -32,15 +32,14 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Patrullas.find({ id: req.body.docs.id }, (err, patrulla) => {
-        patrulla.remove((err) => {
+    Patrullas.findByIdAndRemove({ id: req.body.id }, (err) => {
             if (err) {
                 res.status(500).send({ message: `Error al eliminar la patrulla: ${err}` });
             }
             else {
-                return res.status(200).send({ message: `patrulla eliminada` });
+                res.status(200).send({ message: `patrulla eliminada` });
             }
-        });
+        
     })
 }
 

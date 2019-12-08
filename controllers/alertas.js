@@ -36,15 +36,14 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Alertas.find({ id: req.body.docs.id }, (err, alert) => {
-        alert.remove((err) => {
+    Alertas.findByIdAndRemove({ id: req.body.id }, (err) => {
+        
             if (err) {
                 res.status(500).send({ message: `Error al eliminar la alerta: ${err}` });
             }
             else {
                 return res.status(200).send({ message: `Eliminada la alerta`});
             }
-        });
     })
 }
 

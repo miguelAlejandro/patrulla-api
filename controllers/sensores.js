@@ -37,15 +37,14 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Sensores.find({ id: req.body.docs.id }, (err, sensor) => {
-        sensor.remove((err) => {
+    Sensores.findByIdAndRemove({ id: req.body.id }, (err) => {
+
             if (err) {
                 res.status(500).send({ message: `Error al eliminar el sensor: ${err}` });
             }
             else {
                 return res.status(200).send({ message: `sensor eliminada` });
             }
-        });
     })
 }
 
