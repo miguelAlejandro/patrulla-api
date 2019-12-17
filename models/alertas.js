@@ -8,9 +8,7 @@ var AlertaSchema = Schema({
     nombre: String,
     email: String,
     emailDestino: String,
-    ubicacion: String,
     informacion: String,
-    serial :String
 
 });
 // Exportamos el modelo para usarlo en otros ficheros

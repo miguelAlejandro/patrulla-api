@@ -8,9 +8,8 @@ function create(req, res) {
         nombre: req.body.nombre,
         email: req.body.email,
         emailDestino: req.body.emailDestino,
-        ubicacion: req.body.ubicacion,
         informacion: req.body.informacion,
-        serial: req.body.serial
+
     });
     
     alerta.save((err) => {
@@ -36,7 +35,8 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Alertas.findByIdAndRemove({ id: req.body.id }, (err) => {
+    console.log(req.body.id);
+    Alertas.findByIdAndRemove(req.body.id, (err) => {
         
             if (err) {
                 res.status(500).send({ message: `Error al eliminar la alerta: ${err}` });

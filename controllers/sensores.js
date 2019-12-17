@@ -6,12 +6,9 @@ function create(req, res) {
     const sensor = new Sensores({
         nombre: req.body.nombre,
         email: req.body.email,
-        serial: req.body.serial,
-
-        ubicacion: req.body.ubicacion,
-
-        valMaximo: req.body.valMaximo,
-        ValMinimo: req.body.ValMinimo
+        codigo: req.body.codigo,
+        ejeX : req.body.ejeX,
+        ejeY : req.body.ejeY
        
     });
     sensor.save((err) => {
@@ -37,7 +34,7 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Sensores.findByIdAndRemove({ id: req.body.id }, (err) => {
+    Sensores.findByIdAndRemove(req.body.id, (err) => {
 
             if (err) {
                 res.status(500).send({ message: `Error al eliminar el sensor: ${err}` });

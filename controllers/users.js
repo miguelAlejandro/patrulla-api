@@ -9,8 +9,7 @@ function signUp(req, res) {
         email: req.body.docs.email,
         password: req.body.docs.password,
         role: req.body.docs.role,
-        image: req.body.docs.image,
-        activar: null
+        image: req.body.docs.image
     });
     User.find({ email: req.body.docs.email }, (err, login) => {
         if (login.length > 0) {
@@ -48,10 +47,7 @@ function signIn(req, res) {
                 token: service.createToken(user),
                 name: user[0].name,
                 role: user[0].role,
-                image: user[0].image,
-                alertaId: user[0].alertaId,
-                sensoresId: user[0].sensoresId,
-                patrullaId: user[0].patrullaId
+                image: user[0].image
 
             })
         }

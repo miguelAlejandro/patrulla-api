@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var PatrullaSchema = Schema({
     email: String,
     nombre: String,
-    patrullaId: [String],
+    ejeX: String,
+    ejeY: String
 
 });
 // Exportamos el modelo para usarlo en otros ficheros

@@ -7,9 +7,10 @@ var Schema = mongoose.Schema;
 var SensoresSchema = Schema({
     nombre: String,
     email: String,
-  
-    serial: String,
-   
+    codigo: String,
+    ejeX: String,
+    ejeY: String
+
 });
 // Exportamos el modelo para usarlo en otros ficheros
 module.exports = mongoose.model('Sensores', SensoresSchema);

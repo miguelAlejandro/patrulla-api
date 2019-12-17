@@ -6,7 +6,8 @@ function create(req, res) {
     const patrulla = new Patrullas({
         email: req.body.email,
         nombre: req.body.nombre,
-        serial: req.body.serial
+        ejeX: req.body.ejeX,
+        ejeY: req.body.ejeY
        
     });
     patrulla.save((err) => {
@@ -32,7 +33,7 @@ function read(req, res) {
 
 
 function delet(req, res) {
-    Patrullas.findByIdAndRemove({ id: req.body.id }, (err) => {
+    Patrullas.findByIdAndRemove(req.body.id, (err) => {
             if (err) {
                 res.status(500).send({ message: `Error al eliminar la patrulla: ${err}` });
             }
