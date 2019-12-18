@@ -3,6 +3,7 @@ let router = require('express').Router();
 const userControllers = require('../controllers/users');
 const patrullaControllers = require('../controllers/patrullas');
 const sensoresControllers = require('../controllers/sensores');
+const sensor_1Controllers = require('../controllers/sensor_1');
 const alertasControllers = require('../controllers/alertas');
 
 const auth = require('../middlewares/auth');
@@ -84,6 +85,11 @@ router.get('/read_sensores', sensoresControllers.read);
 // router.post('/update_sensores', sensoresControllers.update);
 router.post('/delete_sensores', sensoresControllers.delet);
 
+// //CRUD Sensor_1
+router.post('/create_sensor_1', sensor_1Controllers.create);
+router.get('/read_sensor_1', sensor_1Controllers.read);
+router.get('/alertas_sensor_1', sensor_1Controllers.alertas);
+router.post('/delete_sensor_1', sensor_1Controllers.delet);
 
 // //CRUD Alertas
 router.post('/create_alertas', alertasControllers.create);
