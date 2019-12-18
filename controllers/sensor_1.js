@@ -27,7 +27,9 @@ function read(req, res) {
         if (sensores.length == 0) return res.status(404).send({ message: 'No hay sensores' })
 
         data = sensores[sensores.length - 1];
-        res.status(200).send({ data })
+        var hora = new Date(data.time);
+        
+        res.status(200).send({ data, hora})
 
     })
 }
@@ -61,7 +63,6 @@ function alertas(req, res) {
         var minuto = 60;
         var muestreo = 5;
         var promedio = (tiempo*minuto)/muestreo;
-
         var suma = 0;
 
         //Algoritmo de las Alertas de 8 am hasta las 10pm mayores de 70db en un tiempo de 10 minutos del promedio
@@ -69,14 +70,14 @@ function alertas(req, res) {
             if(promedio >= 1){
                 suma += permitido_1[p].value;
                 promedio -= 1;
-
             }
             else{
                 promedio = (tiempo*minuto)/muestreo;
                 suma = suma / promedio;
                 if(suma >= 56){
                     console.log("alerta 0101")
-                    alertas_1[alertas_1.length] = {time: permitido_1[p]._doc.time, name: permitido_1[p]._doc.name, serial : permitido_1[p]._doc.codigo}
+                    var fecha = new Date(permitido_1[p]._doc.time);
+                    alertas_1[alertas_1.length] = {time: fecha, name: permitido_1[p]._doc.name, serial : permitido_1[p]._doc.codigo}
                 }
             }
         }
